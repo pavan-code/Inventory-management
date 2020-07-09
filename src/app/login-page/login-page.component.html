@@ -1,0 +1,30 @@
+<div fxFlex 
+    class="container"
+    fxLayout='column' 
+    flexLayoutAlign='space-evenly center'>
+    <!-- {{ loginForm.value | json}} -->
+    <form fxFlex (ngSubmit)='submit()' novalidate [formGroup]="loginForm">
+        <mat-form-field appearance='legacy' class="full-width">
+            <mat-label> <i class="fa fa-envelope"></i> Username </mat-label>
+            <input type="text" matInput formControlName='username' >
+            <mat-error *ngIf="formErrors.username">
+                {{formErrors.username}}
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance='legacy' class="full-width">
+            <mat-label> <i class="fa fa-unlock"></i> Password</mat-label>
+            <input type="password" matInput formControlName='password'>
+            <mat-error *ngIf="formErrors.password">
+                {{formErrors.password}}
+            </mat-error>
+        </mat-form-field>  <br> <br>
+        <mat-checkbox color='primary' formControlName='remember'>Remember me</mat-checkbox>
+        <br>
+        <button [disabled] ='loginForm.invalid' mat-raised-button class="full-width"> <i class="fa fa-sign-in"></i> Login</button>
+        <hr>
+        <a  class="full-width" routerLink='/forgot-password' routerLinkActive>forgot password ?</a>
+    </form>
+        
+</div>
+

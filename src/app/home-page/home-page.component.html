@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <!-- <button mat-button color='primary' (click)="toggle()">open</button> -->
+    <h2 style="width: 15%;">Admin</h2>
+    <!-- <h1>Dashboard</h1> -->
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav opened mode="side">
+      <mat-list>
+        <button mat-button routerLink='/home/dashboard' routerLinkActive><i class="fa fa-dashboard"></i>  Dashboard</button>
+        <button mat-button routerLink='/home/category' routerLinkActive><i class="fa fa-files-o"></i>  Category</button>
+        <button mat-button routerLink='/home/brands' routerLinkActive><i class="fa fa-tags"></i> Brands</button>
+        <button mat-button>item 1</button>
+        <button mat-button>item 1</button>
+        <button mat-button>item 1</button>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>        
+      <router-outlet></router-outlet>
+        
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

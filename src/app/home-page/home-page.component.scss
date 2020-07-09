@@ -1,0 +1,22 @@
+.mat-toolbar {
+    height: 40px;
+    background-color: #d3d3d3;
+}
+.mat-sidenav {
+    width: 200px;
+    background-color: #001f1b;
+    
+}
+.mat-sidenav-container {
+    height: 100%;
+    overflow-y: auto;
+}
+button {
+    width: 100%;
+    text-align: left;
+    display: block;
+    color: white;
+}
+.mat-sidenav-content {
+    padding: 10px;
+}
