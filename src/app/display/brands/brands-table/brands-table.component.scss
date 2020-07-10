@@ -1,3 +1,27 @@
-.full-width-table {
+.mat-table {
   width: 100%;
+}
+.row {
+  // max-width: 75px;
+  flex: 0 0 10%;
+  // border-right: 1px solid black;
+}
+// .mat-header-row {
+//   background-color: #3F51B5;
+//   color: white;
+//   font-weight: bold;
+//   }
+  .mat-header-cell {
+  font-size: 18px;
+  color: white;
+  background-color: #001f1b;
+  }
+  .mat-row:nth-child(odd) {
+  background-color: white;
+  }
+  .mat-row:nth-child(even) {
+  background-color: #D3D3D3;
+  }
+  .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+    color: #001f1b;
 }

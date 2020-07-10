@@ -9,15 +9,29 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CategoryTableComponent } from './category/category-table/category-table.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule  } from '@angular/material/icon'
+import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeBrandDialogComponent } from './change-brand-dialog/change-brand-dialog.component';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
-  declarations: [BrandsComponent, CategoryComponent, DashboardComponent, BrandsTableComponent, CategoryTableComponent],
+  declarations: [BrandsComponent, CategoryComponent, DashboardComponent, BrandsTableComponent, CategoryTableComponent, ChangeBrandDialogComponent],
+  entryComponents: [ChangeBrandDialogComponent],
   imports: [
     CommonModule,
     DisplayRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
+
 export class DisplayModule { }

@@ -16,7 +16,7 @@ export class BrandsTableComponent implements AfterViewInit, OnInit {
   dataSource: BrandsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'actions'];
 
   ngOnInit() {
     this.dataSource = new BrandsTableDataSource();

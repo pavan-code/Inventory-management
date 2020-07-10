@@ -30,7 +30,8 @@ import { DisplayModule } from './display/display-page.module';
 import { DataTableComponent } from './data-table/data-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort'
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -47,10 +48,13 @@ import { MatSortModule } from '@angular/material/sort'
     MatIconModule,    MatToolbarModule,      
     MatInputModule,    MatFormFieldModule,    FormsModule,    ReactiveFormsModule,
     MatDividerModule,    MatCheckboxModule,    MatSidenavModule,    MatListModule,    
-    DisplayModule,     CdkTableModule, MatTableModule, MatPaginatorModule, MatSortModule
+    DisplayModule,     CdkTableModule, MatTableModule, MatPaginatorModule, MatSortModule,
+    MatDialogModule
 
   ],
-  
+  exports:[
+    MatButtonModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

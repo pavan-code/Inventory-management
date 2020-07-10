@@ -1,0 +1,16 @@
+<span mat-dialog-title>Add Brand</span>
+<!-- <span class="flex-spacer"></span> -->
+<!-- <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button> -->
+
+<mat-dialog-content>
+    <!-- {{changeBrand.value | json}} -->
+  <form novalidate (ngSubmit)="saveChanges()" [formGroup]="changeBrand">
+      <div class="form-group">        
+          <h3 matLine>Brand name</h3>
+          <input type="text" class="form-control" placeholder="Brand name" formControlName="brandName" required>
+      </div>
+      <button class="btn btn-success" [disabled]="changeBrand.invalid" (click)="saveChanges()" color='primary'>Save changes</button>
+  </form>
+</mat-dialog-content>
+
+
