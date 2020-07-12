@@ -14,10 +14,23 @@ import { MatIconModule  } from '@angular/material/icon'
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangeBrandDialogComponent } from './change-brand-dialog/change-brand-dialog.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChangeCategoryDialogComponent } from './change-category-dialog/change-category-dialog.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component'
 
 @NgModule({
-  declarations: [BrandsComponent, CategoryComponent, DashboardComponent, BrandsTableComponent, CategoryTableComponent, ChangeBrandDialogComponent],
+  declarations: [
+    BrandsComponent,
+    CategoryComponent, 
+    DashboardComponent, 
+    BrandsTableComponent, 
+    CategoryTableComponent, 
+    ChangeBrandDialogComponent, 
+    ChangeCategoryDialogComponent, 
+    AddProductComponent, 
+    ManageProductsComponent
+  ],
   entryComponents: [ChangeBrandDialogComponent],
   imports: [
     CommonModule,

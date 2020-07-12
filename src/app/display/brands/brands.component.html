@@ -5,10 +5,11 @@
     >
   </div>
   <hr style="margin: 10px 0;" />
-  <button mat-raised-button color='primary' (click)="changeBrand()">Add Brand</button>
-  {{result | json}}
+  <button mat-raised-button color="primary" (click)="addBrand()">
+    Add Brand
+  </button>
+  {{ result | json }}
   <br />
   <hr />
-  
   <app-brands-table></app-brands-table>
 </div>

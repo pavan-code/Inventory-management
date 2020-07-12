@@ -12,22 +12,20 @@ export class BrandsComponent {
 
   constructor(private _dialog: MatDialog) {}
 
-  changeBrand() {
+  addBrand() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-
     dialogConfig.position = {
-      top: '20px',
-      
-    };
-    
-    let dialogRef = this._dialog.open(ChangeBrandDialogComponent, {height: '280px', width: '500px'});
+      top: '30px'
+    }
+    dialogConfig.data = {
+      type: 'add'
+    }
+
+    let dialogRef = this._dialog.open(ChangeBrandDialogComponent,dialogConfig);
     dialogRef.afterClosed()
     .subscribe(result => {
       this.result = result;
     })
   }
-
-
 }
-

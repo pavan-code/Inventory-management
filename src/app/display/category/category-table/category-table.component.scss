@@ -1,3 +1,21 @@
-.full-width-table {
+.mat-table {
   width: 100%;
+}
+.mat-header-cell {
+  font-size: 18px;
+  color: white;
+  background-color: #001f1b;
+  }
+  .mat-row:nth-child(odd) {
+  background-color: white;
+  }
+  .mat-row:nth-child(even) {
+  background-color: #D3D3D3;
+  }
+  .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+    color: #001f1b;
+}
+::ng-deep .custom-style{
+  background-color: #28a745;
+  color:white;
 }

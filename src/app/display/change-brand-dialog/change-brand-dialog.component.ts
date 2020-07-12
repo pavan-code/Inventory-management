@@ -13,12 +13,19 @@ export class ChangeBrandDialogComponent implements OnInit {
   constructor(private fb: FormBuilder, 
               private dialogRef: MatDialogRef<ChangeBrandDialogComponent>,
               @Inject(MAT_DIALOG_DATA) data,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar) {
+                this.brandName = data;
+               }
 
   changeBrand: FormGroup;
+  brandName: any;
 
   ngOnInit(): void {
     this.createForm();
+    // alert(this.brandName.brandName)
+    this.changeBrand = this.fb.group({
+      brandName: [this.brandName.brandName, []]
+    })
   }
 
   createForm() {
@@ -31,11 +38,22 @@ export class ChangeBrandDialogComponent implements OnInit {
 
     // alert("changes saved successfully!!");
     this.dialogRef.close(this.changeBrand.value);
-    this.snackbar.open("Brand added successfully", "close", {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    })
+    if(this.brandName.type == 'add') {
 
+      this.snackbar.open("Brand added successfully", "", {
+        duration: 2000,
+        panelClass: ['custom-style'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      })
+    }
+    else {
+      this.snackbar.open("Brand updated successfully", "", {
+        duration: 2000,
+        panelClass: ['custom-style'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      })
+    }
   }
 }

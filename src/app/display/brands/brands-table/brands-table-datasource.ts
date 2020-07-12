@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Input } from '@angular/core';
-
+import { Input, OnInit } from '@angular/core';
+// import { GetBrandsService } from '../../../services/get-brands.service';
 
 // TODO: Replace this with your own data model type
 export interface BrandsTableItem {
@@ -22,29 +22,24 @@ const EXAMPLE_DATA: BrandsTableItem[] = [
 
 ];
 
-/**
- * Data source for the BrandsTable view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
 export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
   data: BrandsTableItem[] = EXAMPLE_DATA;
   paginator: MatPaginator;
   sort: MatSort;
+  // brands: import("j:/Inventory-management/src/app/services/get-brands.service").brand[];
   
   constructor() {
     super();
-
   }
+ 
+  // ngOnInit() {
+  //   this.brandService.getBrands()
+  //   .subscribe(brands => {
+  //     this.brands = brands;
+  //   })
+  // }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
   connect(): Observable<BrandsTableItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -55,17 +50,8 @@ export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
       return this.getPagedData(this.getSortedData([...this.data]));
     }));
   }
-
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
   disconnect() {}
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
   private getPagedData(data: BrandsTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);

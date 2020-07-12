@@ -9,3 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button {
     outline-style: none !important;
 }
+::ng-deep .custom-style{
+    background-color: #28a745;
+    color:white;
+  }

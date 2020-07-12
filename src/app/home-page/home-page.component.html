@@ -1,23 +1,65 @@
 <mat-toolbar>
-    <!-- <button mat-button color='primary' (click)="toggle()">open</button> -->
-    <h2 style="width: 15%;">Admin</h2>
-    <!-- <h1>Dashboard</h1> -->
-  </mat-toolbar>
-  
-  <mat-sidenav-container>
-    <mat-sidenav opened mode="side">
-      <mat-list>
-        <button mat-button routerLink='/home/dashboard' routerLinkActive><i class="fa fa-dashboard"></i>  Dashboard</button>
-        <button mat-button routerLink='/home/category' routerLinkActive><i class="fa fa-files-o"></i>  Category</button>
-        <button mat-button routerLink='/home/brands' routerLinkActive><i class="fa fa-tags"></i> Brands</button>
-        <button mat-button>item 1</button>
-        <button mat-button>item 1</button>
-        <button mat-button>item 1</button>
-      </mat-list>
-    </mat-sidenav>
-    <mat-sidenav-content>        
-      <router-outlet></router-outlet>
-        
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+  <!-- <button mat-button color='primary' (click)="toggle()">open</button> -->
+  <mat-icon mat-button *ngIf="!hide" (click)="sidenav.toggle()"
+    >arrow_back</mat-icon
+  >
+  <h2 style="width: 15%;">Admin</h2>
+  <!-- <h1>Dashboard</h1> -->
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [(opened)]="opened" [(mode)]="sidebar">
+    <mat-list *ngIf="scrWidth <= 768">
+      <button
+        mat-button
+        routerLink="/home/dashboard"
+        (click)="sidenav.toggle()"
+        routerLinkActive
+      >
+        <i class="fa fa-dashboard"></i> Dashboard
+      </button>
+      <button
+        mat-button
+        routerLink="/home/category"
+        (click)="sidenav.toggle()"
+        routerLinkActive
+      >
+        <i class="fa fa-files-o"></i> Category
+      </button>
+      <button
+        mat-button
+        routerLink="/home/brands"
+        (click)="sidenav.toggle()"
+        routerLinkActive
+      >
+        <i class="fa fa-tags"></i> Brands
+      </button>
+      <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-cubes"></i> Products</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/home/add-product" (click)="sidenav.toggle()" > <i class="fa fa-cube"></i> Add Product</button>
+        <button mat-menu-item routerLink="/home/manage-products" (click)="sidenav.toggle()"> <i class="fa fa-wrench"></i> Manage products</button>
+      </mat-menu>
+    </mat-list>
+    <mat-list *ngIf="scrWidth > 768">
+      <button mat-button routerLink="/home/dashboard" routerLinkActive>
+        <i class="fa fa-dashboard"></i> Dashboard
+      </button>
+      <button mat-button routerLink="/home/category" routerLinkActive>
+        <i class="fa fa-files-o"></i> Category
+      </button>
+      <button mat-button routerLink="/home/brands" routerLinkActive>
+        <i class="fa fa-tags"></i> Brands
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-cubes"></i> Products</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/home/add-product" > <i class="fa fa-cube"></i> Add Product</button>
+        <button mat-menu-item routerLink="/home/manage-products"> <i class="fa fa-wrench"></i> Manage products</button>
+      </mat-menu>
+
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

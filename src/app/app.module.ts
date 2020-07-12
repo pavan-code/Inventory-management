@@ -18,7 +18,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { CdkTableModule } from '@angular/cdk/table';
-// import { DataSource } from '@angular/cdk/table'
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 // ==================================================================================
 
@@ -27,11 +33,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-password-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DisplayModule } from './display/display-page.module';
-import { DataTableComponent } from './data-table/data-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule } from '@angular/material/dialog'
+
+
+
+// import { GetBrandsService } from './services/get-brands.service';
 
 @NgModule({
   declarations: [
@@ -39,9 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog'
     HeaderComponent,
     LoginPageComponent,
     ForgotPasswordPageComponent,
-    HomePageComponent,
-    DataTableComponent,
-    
+    HomePageComponent,    
   ],
   imports: [
     BrowserModule,    AppRoutingModule,    BrowserAnimationsModule,    MatButtonModule,
@@ -49,13 +52,15 @@ import { MatDialogModule } from '@angular/material/dialog'
     MatInputModule,    MatFormFieldModule,    FormsModule,    ReactiveFormsModule,
     MatDividerModule,    MatCheckboxModule,    MatSidenavModule,    MatListModule,    
     DisplayModule,     CdkTableModule, MatTableModule, MatPaginatorModule, MatSortModule,
-    MatDialogModule
+    MatDialogModule,  MatExpansionModule,   MatMenuModule,  MatSelectModule
 
   ],
   exports:[
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    // GetBrandsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

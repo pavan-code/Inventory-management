@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder) { this.createForm(); }
+  constructor(private _fb: FormBuilder,
+              private snackbar: MatSnackBar) { this.createForm(); }
 
   loginForm: FormGroup;
   ngOnInit(): void {
@@ -21,16 +23,18 @@ export class LoginPageComponent implements OnInit {
 
   validationMsgs = {
     "username" : {
-      'required': "Username is required"
+      'required': "Username is required",
+      "minlength": "Username must be atleast 3 characters long."
   },
     "password": {
-      'required': "password is required"
+      'required': "password is required",
+      'minlength': "password must be atleast 8 characters long"
     }
   }
   createForm() {
     this.loginForm = this._fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       remember: false
     });
     this.loginForm.valueChanges
@@ -59,7 +63,14 @@ export class LoginPageComponent implements OnInit {
   }
   submit() {
     // alert("logged in ");
-    window.location.reload();
+    this.snackbar.open("Logged in successfully!!", "close", {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    })
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
 
 

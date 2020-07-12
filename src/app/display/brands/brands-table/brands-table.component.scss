@@ -6,11 +6,7 @@
   flex: 0 0 10%;
   // border-right: 1px solid black;
 }
-// .mat-header-row {
-//   background-color: #3F51B5;
-//   color: white;
-//   font-weight: bold;
-//   }
+
   .mat-header-cell {
   font-size: 18px;
   color: white;
@@ -24,4 +20,8 @@
   }
   .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
     color: #001f1b;
+}
+::ng-deep .custom-style{
+  background-color: #28a745;
+  color:white;
 }
