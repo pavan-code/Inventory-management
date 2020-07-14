@@ -38,7 +38,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         duration: 2000,
         panelClass: ["custom-style"],
         horizontalPosition: 'center',
-        verticalPosition: 'top',
+        verticalPosition: 'bottom',
         
       })
     }
@@ -47,7 +47,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         duration: 2000,
         panelClass: ["custom-style"],
         horizontalPosition: 'center',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     }
   }

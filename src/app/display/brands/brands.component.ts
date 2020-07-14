@@ -15,8 +15,9 @@ export class BrandsComponent {
   addBrand() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    // dialogConfig.backdropClass = "background"
     dialogConfig.position = {
-      top: '30px'
+      top: '60px'
     }
     dialogConfig.data = {
       type: 'add'

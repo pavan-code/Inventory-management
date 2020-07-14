@@ -17,7 +17,12 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangeCategoryDialogComponent } from './change-category-dialog/change-category-dialog.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component'
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ProductsTableComponent } from './manage-products/products-table/products-table.component';
+import { ChangeProductDialogComponent } from './change-product-dialog/change-product-dialog.component'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,7 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
     ChangeBrandDialogComponent, 
     ChangeCategoryDialogComponent, 
     AddProductComponent, 
-    ManageProductsComponent
+    ManageProductsComponent, ProductsTableComponent, ChangeProductDialogComponent
   ],
   entryComponents: [ChangeBrandDialogComponent],
   imports: [
@@ -43,7 +48,10 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 

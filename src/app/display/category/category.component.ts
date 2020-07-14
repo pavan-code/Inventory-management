@@ -16,7 +16,7 @@ export class CategoryComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.position = {
-      top: '30px'
+      top: '60px'
     }
     dialogConfig.data = {
       type: 'add'

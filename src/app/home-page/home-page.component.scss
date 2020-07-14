@@ -1,19 +1,23 @@
 .mat-toolbar {
     height: 40px;
     background-color: #d3d3d3;
+    position: sticky;
+    top: 55px;
+    z-index: 90;
 }
-.mat-toolbar .mat-icon {
+ .mat-icon {
     width: 28px;
     cursor: pointer;
     // border: 1px solid black;
 }
 .mat-sidenav {
     width: 200px;
+    // position: sticky;
     background-color: #001f1b;
     
 }
 .mat-sidenav-container {
-    height: 100%;
+    height: 100vh;
     overflow-y: auto;
 }
 button {

@@ -38,12 +38,13 @@ export class BrandsTableComponent implements AfterViewInit, OnInit {
     // alert(event);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    dialogConfig.backdropClass = 'background'
     dialogConfig.data = {
       brandName : event,
       type: 'edit'
     }
     dialogConfig.position = {
-      top: '30px'
+      top: '60px'
     }
     let dialogRef = this._dialog.open(ChangeBrandDialogComponent, dialogConfig);
     dialogRef.afterClosed()
@@ -57,7 +58,7 @@ export class BrandsTableComponent implements AfterViewInit, OnInit {
     this.snackbar.open("Brand deleted successfully", '', {
       duration: 2000,
       panelClass: ['custom-style'],
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
       horizontalPosition: 'center'
     })
   }

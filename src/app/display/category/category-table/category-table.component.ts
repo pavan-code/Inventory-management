@@ -39,7 +39,7 @@ export class CategoryTableComponent implements AfterViewInit, OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.position = {
-      top: '30px'
+      top: '60px'
     }
     dialogConfig.data = {
       categoryName: event,
@@ -56,9 +56,7 @@ export class CategoryTableComponent implements AfterViewInit, OnInit {
   deleteCategory(categoryName: string) {
     this.snackbar.open("Category deleted successfully", '', {
       duration: 2000,
-      panelClass: ['custom-style'],
-      
-      verticalPosition: 'top',
+      panelClass: ['custom-style'],      
       horizontalPosition: 'center'
     })
   }

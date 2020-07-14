@@ -44,7 +44,7 @@ export class ChangeBrandDialogComponent implements OnInit {
         duration: 2000,
         panelClass: ['custom-style'],
         horizontalPosition: 'center',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     }
     else {
@@ -52,7 +52,7 @@ export class ChangeBrandDialogComponent implements OnInit {
         duration: 2000,
         panelClass: ['custom-style'],
         horizontalPosition: 'center',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     }
   }

@@ -4,42 +4,36 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// import { GetBrandsService } from '../../../services/get-brands.service';
-
 // TODO: Replace this with your own data model type
-export interface BrandsTableItem {
-  name: string;
+export interface ProductsTableItem {
   id: number;
+  name: string;
+  price: string;
+  quantity: number;
+  description: string;
+  category: string;
+  brand: string;
+  
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: BrandsTableItem[] = [
-  {id: 1, name: 'Cintool'},
-  {id: 2, name: 'Santoor'},
-  {id: 3, name: 'Medimix'},
-  {id: 4, name: 'Lux'},
-  {id: 5, name: 'Lifebuoy'},
-
+const EXAMPLE_DATA: ProductsTableItem[] = [
+  {id: 1, name: 'soap', price: '34', quantity: 43, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
+  {id: 2, name: 'biscuit', price: '27', quantity: 26, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
+  {id: 3, name: 'cereal', price: '78', quantity: 83, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
 ];
 
-export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
-  data: BrandsTableItem[] = EXAMPLE_DATA;
+export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
+  data: ProductsTableItem[] = EXAMPLE_DATA;
   paginator: MatPaginator;
   sort: MatSort;
-  // brands: import("j:/Inventory-management/src/app/services/get-brands.service").brand[];
-  
+
   constructor() {
     super();
   }
- 
-  // ngOnInit() {
-  //   this.brandService.getBrands()
-  //   .subscribe(brands => {
-  //     this.brands = brands;
-  //   })
-  // }
 
-  connect(): Observable<BrandsTableItem[]> {
+ 
+  connect(): Observable<ProductsTableItem[]> {
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -50,18 +44,15 @@ export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
       return this.getPagedData(this.getSortedData([...this.data]));
     }));
   }
+
   disconnect() {}
 
-  private getPagedData(data: BrandsTableItem[]) {
+  private getPagedData(data: ProductsTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: BrandsTableItem[]) {
+  private getSortedData(data: ProductsTableItem[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -69,8 +60,10 @@ export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'price': return compare(+a.price, +b.price, isAsc);
+        case 'quantity': return compare(a.quantity, b.quantity, isAsc);
         default: return 0;
       }
     });
