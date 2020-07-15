@@ -17,18 +17,53 @@ export class ChangeCategoryDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) data,
               private snackbar: MatSnackBar
     ) {  this.categoryName = data }
-
+    formErrors = {
+      "categoryName" : ''
+    }
+    validationMsgs = {
+      "categoryName" : {
+        "required" : "Category name is required"
+      }
+    }
   ngOnInit(): void {
     this.createForm();
     this.changeCategory = this._fb.group({
-      categoryName : [this.categoryName.categoryName, []]
+      categoryName : [this.categoryName.categoryName, [Validators.required]]
     })
+    this.changeCategory.valueChanges
+    .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
   }
 
   createForm() {
     this.changeCategory = this._fb.group({
       categoryName: ['', [Validators.required]]
     })
+    this.changeCategory.valueChanges
+    .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
+  }
+
+  onValueChanged(data?: any) {
+    if (!this.changeCategory) {
+      return;
+    }
+    const form = this.changeCategory;
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {
+        // clear previuos error messages if any
+        this.formErrors[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMsgs[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key];
+            }
+          }
+        }
+      }
+    }
   }
   saveChanges() {
     this.dialogRef.close(this.changeCategory.value);

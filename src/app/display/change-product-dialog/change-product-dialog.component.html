@@ -1,40 +1,64 @@
 <h2 mat-dialog-title>Update Product</h2>
 <mat-dialog-content>
-    <!-- {{ updateProduct.value | json }} -->
-    {{product.value | json}}
-    <div class="container">
-        
-        <form [formGroup]="updateProduct" (ngSubmit) = "saveChanges()" novalidate >
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Product name</mat-label>
-              <input matInput formControlName="productName" type="text">
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-                <mat-label>Price</mat-label>
-                <input type="text" matInput formControlName="price">
-            </mat-form-field>
-           <mat-form-field appearance="outline">
-               <mat-label>Quantity</mat-label>
-               <input type="text" matInput formControlName="quantity">
-           </mat-form-field>
-           <br>
-           <mat-form-field class="full-width" appearance="outline">
-               <mat-label>Description</mat-label>
-               <textarea name="" id="" cols="30" rows="3" formControlName="description" matInput></textarea>
-           </mat-form-field>
-           <br>
-           <mat-form-field appearance="outline">
-               <mat-label>Category</mat-label>
-               <input type="text" matInput formControlName="category">
-           </mat-form-field>
-           <mat-form-field appearance="outline">
-               <mat-label>Brand</mat-label>
-               <input type="text" matInput formControlName="brand">
-           </mat-form-field>
-           <br>
+  <!-- {{ updateProduct.value | json }} -->
+  {{ product.value | json }}
+  <div class="container">
+    <form [formGroup]="updateProduct" (ngSubmit)="saveChanges()" novalidate>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Product name</mat-label>
+        <input matInput formControlName="productName" type="text" />
+        <mat-error *ngIf="formErrors.productName">
+          {{ formErrors.productName }}
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input type="number" matInput formControlName="price" />
+        <mat-error *ngIf="formErrors.price">
+          {{ formErrors.price }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input type="number" matInput formControlName="quantity" />
+        <mat-error *ngIf="formErrors.quantity">
+          {{ formErrors.quantity }}
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="3"
+          formControlName="description"
+          matInput
+        ></textarea>
+        <mat-error *ngIf="formErrors.description">
+          {{ formErrors.description }}
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input type="text" matInput formControlName="category" />
+        <mat-error *ngIf="formErrors.category">
+          {{ formErrors.category }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Brand</mat-label>
+        <input type="text" matInput formControlName="brand" />
+        <mat-error *ngIf="formErrors.brand">
+          {{ formErrors.brand }}
+        </mat-error>
+      </mat-form-field>
+      <br />
 
-            <!-- <div class="form-group">
+      <!-- <div class="form-group">
                 <label for="name">Product name</label>
                 <input #productName type="text" class="form-control" placeholder="Enter product name" formControlName="productName" required>
                 <div *ngIf="productName.invalid && (productName.dirty || productName.touched)">
@@ -70,10 +94,16 @@
                 <label for="brand">Brand</label>
                 <input type="text" class="form-control" placeholder="Select brand" formControlName="brand">        
             </div> -->
-        </form>
-    </div>
+    </form>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button color='warn' mat-dialog-close>close</button>
-    <button class="btn btn-success" [disabled]="updateProduct.invalid" (click)="saveChanges()">Save changes</button>    
+  <button mat-button color="warn" mat-dialog-close>close</button>
+  <button
+    class="btn btn-success"
+    [disabled]="updateProduct.invalid"
+    (click)="saveChanges()"
+  >
+    Save changes
+  </button>
 </mat-dialog-actions>

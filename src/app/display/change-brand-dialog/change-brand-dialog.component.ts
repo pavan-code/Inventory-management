@@ -19,13 +19,23 @@ export class ChangeBrandDialogComponent implements OnInit {
 
   changeBrand: FormGroup;
   brandName: any;
-
+  formErrors = {
+    "brandName" : ''
+  }
+  validationMsgs = {
+    "brandName" : {
+      "required" : "Brand name is required"
+    }
+  }
   ngOnInit(): void {
     this.createForm();
     // alert(this.brandName.brandName)
     this.changeBrand = this.fb.group({
-      brandName: [this.brandName.brandName, []]
+      brandName: [this.brandName.brandName, [Validators.required]]
     })
+    this.changeBrand.valueChanges
+    .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
   }
 
   createForm() {
@@ -33,6 +43,30 @@ export class ChangeBrandDialogComponent implements OnInit {
       brandName: ['', [Validators.required]],
 
     })
+    this.changeBrand.valueChanges
+    .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
+  }
+  onValueChanged(data?: any) {
+    if (!this.changeBrand) {
+      return;
+    }
+    const form = this.changeBrand;
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {
+        // clear previuos error messages if any
+        this.formErrors[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMsgs[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key];
+            }
+          }
+        }
+      }
+    }
   }
   saveChanges() {
 

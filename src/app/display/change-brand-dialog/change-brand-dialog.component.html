@@ -4,16 +4,14 @@
 <mat-dialog-content>
   <!-- {{changeBrand.value | json}} -->
   <form novalidate (ngSubmit)="saveChanges()" [formGroup]="changeBrand">
-    <div class="form-group">
-      <h3 matLine>Brand name</h3>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Brand name"
-        formControlName="brandName"
-        required
-      />
-    </div>
+    <mat-form-field appearance = "outline" class="full-width">
+      <mat-label>Brand name</mat-label>
+      <input type="text" matInput formControlName = "brandName">
+      <mat-error *ngIf = "formErrors.brandName"> 
+        {{formErrors.brandName}}
+      </mat-error>
+    </mat-form-field> <br>
+    
     <button mat-stroked-button color="warn" mat-dialog-close>close</button> <span class="flex-spacer"></span>
     <button
       class="btn btn-success"

@@ -8,7 +8,7 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 export interface ProductsTableItem {
   id: number;
   name: string;
-  price: string;
+  price: number;
   quantity: number;
   description: string;
   category: string;
@@ -18,9 +18,9 @@ export interface ProductsTableItem {
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: ProductsTableItem[] = [
-  {id: 1, name: 'soap', price: '34', quantity: 43, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
-  {id: 2, name: 'biscuit', price: '27', quantity: 26, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
-  {id: 3, name: 'cereal', price: '78', quantity: 83, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
+  {id: 1, name: 'soap', price: 34, quantity: 43, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
+  {id: 2, name: 'biscuit', price: 56, quantity: 26, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
+  {id: 3, name: 'cereal', price: 78, quantity: 83, description: 'adfadfadsfadsf', category: 'category', brand: 'brand' },
 ];
 
 export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
@@ -62,7 +62,7 @@ export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
       switch (this.sort.active) {
         case 'id': return compare(+a.id, +b.id, isAsc);
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'price': return compare(+a.price, +b.price, isAsc);
+        case 'price': return compare(a.price, b.price, isAsc);
         case 'quantity': return compare(a.quantity, b.quantity, isAsc);
         default: return 0;
       }

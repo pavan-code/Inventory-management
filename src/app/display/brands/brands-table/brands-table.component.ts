@@ -38,7 +38,7 @@ export class BrandsTableComponent implements AfterViewInit, OnInit {
     // alert(event);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.backdropClass = 'background'
+    // dialogConfig.backdropClass = 'background'
     dialogConfig.data = {
       brandName : event,
       type: 'edit'

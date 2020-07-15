@@ -31,13 +31,16 @@ button {
 }
 .mat-menu {
     background-color: #001f1b;
-
+    padding-top: 0;
 }
-.mat-menu-item {
+.mat-menu-item, .mat-menu-item:hover {
+    // background-color: #001a14;
+    height: 36px;
     color: black;
     width: 200px;
-
 }
-.mat-menu-content {
-    padding: 0 !important;
+.mat-menu-content:not(:empty) {
+    background-color: #001a14;
+    padding-top: 0;
+    padding-bottom: 0;
 }

@@ -4,16 +4,14 @@
 <mat-dialog-content>
   <!-- {{ changeCategory.value | json }} -->
   <form novalidate (ngSubmit)="saveChanges()" [formGroup]="changeCategory">
-    <div class="form-group">
-      <h3>Category name</h3>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Category name"
-        formControlName="categoryName"
-        required
-      />
-    </div>
+    <mat-form-field appearance = "outline" class="full-width">
+      <mat-label>Category name</mat-label>
+      <input type="text" matInput formControlName = "categoryName">
+      <mat-error *ngIf = "formErrors.categoryName">
+        {{formErrors.categoryName}}
+      </mat-error>
+    </mat-form-field> <br>
+
     <button mat-stroked-button color="warn" mat-dialog-close>close</button>
     <button
       class="btn btn-success"
