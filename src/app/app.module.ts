@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 //======================================== material modules==========================
 
@@ -32,6 +33,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-password-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DisplayModule } from './display/display-page.module';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 // import { GetBrandsService } from './services/get-brands.service';
 
@@ -42,8 +44,10 @@ import { DisplayModule } from './display/display-page.module';
     LoginPageComponent,
     ForgotPasswordPageComponent,
     HomePageComponent,
+    SignUpComponent,
   ],
   imports: [
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

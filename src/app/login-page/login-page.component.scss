@@ -1,4 +1,6 @@
-
+body {
+    height: 100vh;
+}
 div.container {
     position: relative;
     box-shadow: 
@@ -7,8 +9,9 @@ div.container {
     border: 1px solid rgb(218, 218, 218);                
     top: 100px;
     padding: 20px;
-    max-width: 300px;
+    min-width: 350px;
     border-radius: 5px;
+    height: auto;
 }
 .mat-raised-button {
     color: white;
@@ -17,9 +20,37 @@ div.container {
 .full-width {
     width: 100%;
 }
-p a {
+div.forgot {
+    text-align: center;
+}
+a {
     width: 260px;
     // text-align: center;
     margin: auto;
     text-decoration: none;
+}
+.loginbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+div.image {
+    // border-right: 1px solid rgb(165, 165, 165);
+    height: 100%; 
+    margin-right: 20px;
+    background-image: url(../../assets/images/login.png);
+    background-repeat: no-repeat;
+    // opacity: 0.8;
+    margin-right: 20px;
+}
+.google {
+    background-color: rgb(219,68,55);
+    color: white;
+    opacity: 1;
+}
+.facebook {
+    background-color: #3b5998;
+    color: white;
+    opacity: 1;
 }

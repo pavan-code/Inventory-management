@@ -1,0 +1,26 @@
+
+div.container {
+    position: relative;
+    box-shadow: 
+                15px 15px 20px -15px #9e9e9e,                
+                15px 15px 20px -15px #9e9e9e;
+    border: 1px solid rgb(218, 218, 218);                
+    top: 100px;
+    padding: 20px;
+    min-width: 350px;
+    border-radius: 5px;
+    height: auto;
+    // background-color: green;
+}
+.full-width {
+    width: 97%;
+}
+div.image {
+    border-top: 1px solid rgb(165, 165, 165);
+    text-align: center;
+    padding: 20px;
+}
+.mat-raised-button {
+    color: white;
+    background-color: #34c7ff;
+}

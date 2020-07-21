@@ -1,0 +1,83 @@
+<div
+    fxFlex='50'
+    fxLayout='column'
+    class="container">
+    <!-- {{signUpForm.value | json }} -->
+    <div fxFlex='90%'>
+       <form (ngSubmit) = "signup()" [formGroup] = "signUpForm" fxLayout.sm='column' fxLayout.xs='column' fxLayout='column'>
+            <div fxFlex fxLayout = 'row' fxLayout.xs='column' fxLayout.sm = 'column'>            
+                <div fxFlex='50'>    
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>First name</mat-label>
+                        <input type="text" matInput formControlName = "firstName">
+                        <mat-error *ngIf = "formErrors.firstName">
+                            {{formErrors.firstName}}
+                        </mat-error>
+                    </mat-form-field>
+                                    
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email ID</mat-label>
+                        <input type="text" matInput formControlName = "mailId">
+                        <mat-error *ngIf = "formErrors.mailId">
+                            {{formErrors.mailId}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Address</mat-label>
+                        <input type="text" matInput formControlName = "address">
+                        <mat-error *ngIf = "formErrors.address">
+                            {{formErrors.address}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxFlex='50'>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Last name</mat-label>
+                        <input type="text" matInput formControlName = "lastName">
+                        <mat-error *ngIf = "formErrors.lastName">
+                            {{formErrors.lastName}}
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Contact number</mat-label>
+                        <input type="text" matInput formControlName = "contactNo">
+                        <mat-error *ngIf = "formErrors.contactNo">
+                            {{formErrors.contactNo}}
+                        </mat-error>
+                    </mat-form-field>
+                                        
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Preferred Job role</mat-label>
+                        <mat-select #jobRole formControlName = "jobRole">
+                            <mat-option value = "inventory">Inventory</mat-option>
+                            <mat-option value = "shop-owner">Shop owner</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf= 'formErrors.jobRole'>
+                            {{formErrors.jobRole}
+                        </mat-error>
+                    </mat-form-field>
+                    
+                </div>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="full-width" *ngIf = "jobRole.value == 'shop-owner'">
+                    <mat-label>Annual Income</mat-label>
+                    <input type="text" matInput formControlName = "annualIncome">
+                    <mat-error *ngIf = "formErrors.annualIncome">
+                        {{formErrors.annualIncome}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign='center'>
+                <button [disabled] = "signUpForm.invalid" mat-raised-button class="full-width" mat-button>Sign up</button>
+            </div>
+        </form>
+    </div>
+
+    <div fxFlex='10%' class="image">
+        <p>Already have account? <a routerLink = "/login">Login</a></p>
+    </div>
+</div>
