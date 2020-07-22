@@ -16,6 +16,7 @@ export class SignUpComponent implements OnInit {
     'mailId' : '',
     'contactNo' : '',
     'address' : '',
+    'password' : '',
     'jobRole' : '',
     'annualIncome' : ''
   }
@@ -39,6 +40,9 @@ export class SignUpComponent implements OnInit {
     'address' : {
       'required' : "Please provide your address" 
     },
+    'password' : {
+      'required' : "Password is required"
+    },
     'jobRole' : {
       'required' : "Select one job role"
     },
@@ -52,13 +56,14 @@ export class SignUpComponent implements OnInit {
   }
   createForm() {
     this.signUpForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
-      mailId: ['', [Validators.required, Validators.email]],
-      contactNo: ['', [Validators.required, Validators.pattern("^[0-9]{10}$"),]],
-      address: ['', [Validators.required]],
+      firstName: ['adsfaf', [Validators.required, Validators.minLength(3)]],
+      lastName: ['adssadfg', [Validators.required, Validators.minLength(3)]],
+      mailId: ['ad@afdg', [Validators.required, Validators.email]],
+      contactNo: ['9090909090', [Validators.required, Validators.pattern("^[0-9]{10}$"),]],
+      address: ['adfas', [Validators.required]],
+      password: ['adf', [Validators.required]],
       jobRole: ['', [Validators.required]],
-      annualIncome: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      annualIncome: ['', [ Validators.pattern("^[0-9]*$")]]
     })
     this.signUpForm.valueChanges
     .subscribe(data => this.onValueChanged(data))
@@ -67,8 +72,7 @@ export class SignUpComponent implements OnInit {
     if (!this.signUpForm) { return; }   
     const form = this.signUpForm;
     for (const field in this.formErrors) {
-      if (this.formErrors.hasOwnProperty(field)) {
-        // clear previuos error messages if any
+      if (this.formErrors.hasOwnProperty(field)) {        
         this.formErrors[field] = '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
@@ -83,6 +87,9 @@ export class SignUpComponent implements OnInit {
     }
   }
   signup() {
-    alert('saved');
+    // alert('saved');
+    console.log(this.signUpForm.value);
+    // this.signUpForm.reset();
+    window.location.reload();    
   }
 }

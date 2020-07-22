@@ -2,7 +2,7 @@
     fxFlex='50'
     fxLayout='column'
     class="container">
-    <!-- {{signUpForm.value | json }} -->
+    {{signUpForm.value | json }}
     <div fxFlex='90%'>
        <form (ngSubmit) = "signup()" [formGroup] = "signUpForm" fxLayout.sm='column' fxLayout.xs='column' fxLayout='column'>
             <div fxFlex fxLayout = 'row' fxLayout.xs='column' fxLayout.sm = 'column'>            
@@ -30,6 +30,17 @@
                             {{formErrors.address}}
                         </mat-error>
                     </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Preferred Job role</mat-label>
+                        <mat-select #jobRole formControlName = "jobRole">
+                            <mat-option value = "inventory">Inventory</mat-option>
+                            <mat-option value = "shop-owner">Shop owner</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf= 'formErrors.jobRole'>
+                            {{formErrors.jobRole}
+                        </mat-error>
+                    </mat-form-field>
                 </div>
 
                 <div fxFlex='50'>
@@ -48,29 +59,27 @@
                             {{formErrors.contactNo}}
                         </mat-error>
                     </mat-form-field>
-                                        
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Preferred Job role</mat-label>
-                        <mat-select #jobRole formControlName = "jobRole">
-                            <mat-option value = "inventory">Inventory</mat-option>
-                            <mat-option value = "shop-owner">Shop owner</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf= 'formErrors.jobRole'>
-                            {{formErrors.jobRole}
+                                
+                    <mat-form-field appearance = "outline" class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput formControlName = "password">
+                        <mat-error *ngIf = "formErrors.password">
+                            {{formErrors.password}}
+                        </mat-error>
+                    </mat-form-field>                               
+                
+                    <mat-form-field [required] = "jobRole.value == 'shop-owner'" appearance="outline" class="full-width" *ngIf = "jobRole.value == 'shop-owner'">
+                        <mat-label>Annual Income</mat-label>
+                        <input type="text" matInput formControlName = "annualIncome">
+                        <mat-error *ngIf = "formErrors.annualIncome">
+                            {{formErrors.annualIncome}}
                         </mat-error>
                     </mat-form-field>
-                    
                 </div>
             </div>
-            <div>
-                <mat-form-field appearance="outline" class="full-width" *ngIf = "jobRole.value == 'shop-owner'">
-                    <mat-label>Annual Income</mat-label>
-                    <input type="text" matInput formControlName = "annualIncome">
-                    <mat-error *ngIf = "formErrors.annualIncome">
-                        {{formErrors.annualIncome}}
-                    </mat-error>
-                </mat-form-field>
-            </div>
+            <!-- <div>
+                
+            </div> -->
             <div fxLayoutAlign='center'>
                 <button [disabled] = "signUpForm.invalid" mat-raised-button class="full-width" mat-button>Sign up</button>
             </div>
