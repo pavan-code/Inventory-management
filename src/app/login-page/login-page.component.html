@@ -14,10 +14,10 @@
     <div fxFlex='100%'>
         <form fxLayout.xs='column' (ngSubmit)='submit()' novalidate [formGroup]="loginForm">
             <mat-form-field appearance='outline' class="full-width">
-                <mat-label> <i class="fa fa-envelope"></i> Username </mat-label>
-                <input type="text" matInput formControlName='username' >
-                <mat-error *ngIf="formErrors.username">
-                    {{formErrors.username}}
+                <mat-label> <i class="fa fa-envelope"></i> Email id </mat-label>
+                <input type="text" matInput formControlName='mailId' >
+                <mat-error *ngIf="formErrors.mailId">
+                    {{formErrors.mailId}}
                 </mat-error>
             </mat-form-field>
             

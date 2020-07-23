@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import axios from 'axios';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -22,14 +23,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   formErrors = {
-    "username": '',
+    "mailId": '',
     'password': ''
   }
 
   validationMsgs = {
-    "username" : {
-      'required': "Username is required",
-      "minlength": "Username must be atleast 3 characters long."
+    "mailId" : {
+      'required': "Email ID is required",
+      'email' : 'Invalid email'
   },
     "password": {
       'required': "password is required",
@@ -38,8 +39,8 @@ export class LoginPageComponent implements OnInit {
   }
   createForm() {
     this.loginForm = this._fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      mailId: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
       remember: false
     });
     this.loginForm.valueChanges
@@ -67,15 +68,35 @@ export class LoginPageComponent implements OnInit {
     }
   }
   submit() {
-    // alert("logged in ");
-    this.snackbar.open("Logged in successfully!!", "close", {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
+    axios({
+      headers: {
+        'Content-type' : 'application/json; charset=UTF-8'
+      },
+      method: 'post',
+      url : 'https://inventory-shop-api.herokuapp.com/auth/signin',
+      data : {
+        email : this.loginForm.value.mailId,
+        password : this.loginForm.value.password
+      }
     })
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    .then( (response) => {
+    
+      console.log(response.data.message)
+      this.snackbar.open("Login Successful", 'close', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      })
+    })
+    .catch( (error) => {
+      console.log(error.response.data.message);
+      
+      this.snackbar.open(error.response.data.message, 'close', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      })
+    })
   }
 
 

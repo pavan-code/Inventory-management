@@ -2,7 +2,7 @@
     fxFlex='50'
     fxLayout='column'
     class="container">
-    {{signUpForm.value | json }}
+    <!-- {{signUpForm.value | json }} -->
     <div fxFlex='90%'>
        <form (ngSubmit) = "signup()" [formGroup] = "signUpForm" fxLayout.sm='column' fxLayout.xs='column' fxLayout='column'>
             <div fxFlex fxLayout = 'row' fxLayout.xs='column' fxLayout.sm = 'column'>            

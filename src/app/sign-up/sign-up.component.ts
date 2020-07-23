@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import axios from 'axios';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -8,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private snackbar: MatSnackBar) { }
   signUpForm : FormGroup;
   formErrors = {
     'firstName' : '',
@@ -56,12 +60,12 @@ export class SignUpComponent implements OnInit {
   }
   createForm() {
     this.signUpForm = this.fb.group({
-      firstName: ['adsfaf', [Validators.required, Validators.minLength(3)]],
-      lastName: ['adssadfg', [Validators.required, Validators.minLength(3)]],
-      mailId: ['ad@afdg', [Validators.required, Validators.email]],
+      firstName: ['surya', [Validators.required, Validators.minLength(3)]],
+      lastName: ['pavan', [Validators.required, Validators.minLength(3)]],
+      mailId: ['ad@gmail.com', [Validators.required, Validators.email]],
       contactNo: ['9090909090', [Validators.required, Validators.pattern("^[0-9]{10}$"),]],
       address: ['adfas', [Validators.required]],
-      password: ['adf', [Validators.required]],
+      password: ['123456', [Validators.required]],
       jobRole: ['', [Validators.required]],
       annualIncome: ['', [ Validators.pattern("^[0-9]*$")]]
     })
@@ -87,9 +91,44 @@ export class SignUpComponent implements OnInit {
     }
   }
   signup() {
-    // alert('saved');
-    console.log(this.signUpForm.value);
-    // this.signUpForm.reset();
-    window.location.reload();    
+       
+   axios({
+      headers : {
+          'Content-Type': 'application/json;charset=UTF-8',
+      },
+      method : 'post',
+      url : 'https://inventory-shop-api.herokuapp.com/auth/signup',
+      data : { 
+        firstname : this.signUpForm.value.firstName,
+        lastname: this.signUpForm.value.lastName,
+        email : this.signUpForm.value.mailId,
+        phone : this.signUpForm.value.contactNo,
+        address : this.signUpForm.value.address,
+        password : this.signUpForm.value.password,
+        annualincome : this.signUpForm.value.annualIncome,
+        role : this.signUpForm.value.jobRole
+       }
+  })
+  .then( (response) => {
+    console.log(response.data.message)
+    this.snackbar.open(response.data.message, 'close', {
+      duration: 2500,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    })
+  })
+  .catch((error) => {
+    // console.log("Hiiii")
+    // console.log(error.response.data.message)
+    this.snackbar.open(error.response.data.message, 'close', {
+      duration: 2500,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    })
+  })
+    
+
+  
+     
   }
 }
