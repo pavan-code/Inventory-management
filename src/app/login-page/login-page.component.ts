@@ -19,6 +19,8 @@ export class LoginPageComponent implements OnInit {
               private snackbar: MatSnackBar) { this.createForm(); }
 
   loginForm: FormGroup;
+  hidden: boolean = false;
+
   ngOnInit(): void {
   }
 
@@ -41,7 +43,7 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = this._fb.group({
       mailId: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
-      remember: false
+      remember: [false]
     });
     this.loginForm.valueChanges
     .subscribe(data => this.onValueChanged(data));
@@ -68,6 +70,8 @@ export class LoginPageComponent implements OnInit {
     }
   }
   submit() {
+    
+    this.hidden = true;
     axios({
       headers: {
         'Content-type' : 'application/json; charset=UTF-8'
@@ -80,22 +84,40 @@ export class LoginPageComponent implements OnInit {
       }
     })
     .then( (response) => {
-    
+      this.hidden = false;
+      var token = response.data.message.salt
+
+      var date = new Date();
+  
+      date.setTime(date.getTime()+(5*60*60*1000));
+  
+      var expires =  "expires=" + date.toUTCString();
+  
+      document.cookie = "token" + "=" + token + ";" + expires + ";path=/";
+
       console.log(response.data.message)
-      this.snackbar.open("Login Successful", 'close', {
-        duration: 2500,
+      this.loginForm.reset();
+
+      this.snackbar.open("Login Successful", '', {
+        duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'center'
-      })
+      })      
+      location.href = '/home';
+      
     })
     .catch( (error) => {
+      this.hidden = false;
+      
+      
       console.log(error.response.data.message);
       
       this.snackbar.open(error.response.data.message, 'close', {
-        duration: 2500,
+        duration: 5000,
         verticalPosition: 'top',
         horizontalPosition: 'center'
       })
+      this.loginForm.reset();
     })
   }
 

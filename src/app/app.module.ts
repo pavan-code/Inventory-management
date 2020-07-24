@@ -25,7 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 // ==================================================================================
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -70,6 +70,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatExpansionModule,
     MatMenuModule,
     MatSelectModule,
+    MatProgressSpinnerModule
   ],
   exports: [MatButtonModule],
   providers: [

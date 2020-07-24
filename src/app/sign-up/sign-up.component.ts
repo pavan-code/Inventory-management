@@ -12,6 +12,8 @@ import axios from 'axios';
 })
 export class SignUpComponent implements OnInit {
 
+  
+  
   constructor(private fb: FormBuilder, private snackbar: MatSnackBar) { }
   signUpForm : FormGroup;
   formErrors = {
@@ -111,17 +113,18 @@ export class SignUpComponent implements OnInit {
   })
   .then( (response) => {
     console.log(response.data.message)
-    this.snackbar.open(response.data.message, 'close', {
-      duration: 2500,
+
+   
+    this.snackbar.open("Sign up successful", '', {
+      duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: 'center'
     })
   })
   .catch((error) => {
-    // console.log("Hiiii")
-    // console.log(error.response.data.message)
+    
     this.snackbar.open(error.response.data.message, 'close', {
-      duration: 2500,
+      duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'center'
     })

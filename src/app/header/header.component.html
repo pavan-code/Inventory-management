@@ -1,5 +1,5 @@
 <mat-toolbar color='primary'>
     <button  mat-button routerLink = "/home" routerLinkActive><mat-icon>home</mat-icon></button>
-    <span class="flex-spacer"></span>
-    <button mat-button routerLink = "/login" routerLinkActive>Login <i class="fa fa-sign-in"></i></button>
+    <span class="flex-spacer"></span>    
+    <button *ngIf = "!isLoggedIn" mat-button routerLink = "/login" routerLinkActive>Login <i class="fa fa-sign-in"></i></button>
 </mat-toolbar>

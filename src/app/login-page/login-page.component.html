@@ -5,14 +5,11 @@
     fxLayout.xs = 'column'>
     <!-- {{ loginForm.value | json}} -->
     <div class="image"
-        fxFlex='40%' fxLayout='column' fxLayoutAlign="center">
-        <!-- <button mat-button class="full-width google"> <i class="fa fa-google"></i> Login with Google</button>
-        <br> 
-        <button mat-button class="full-width facebook"> <i class="fa fa-facebook"></i> Login with Facebook</button>         -->
+        fxFlex='40%' fxLayout='column' fxLayoutAlign="center">    
     </div>
     <hr>
-    <div fxFlex='100%'>
-        <form fxLayout.xs='column' (ngSubmit)='submit()' novalidate [formGroup]="loginForm">
+    <div fxFlex='100%' >
+        <form *ngIf = "!hidden" fxLayout.xs='column' (ngSubmit)='submit()' novalidate [formGroup]="loginForm">
             <mat-form-field appearance='outline' class="full-width">
                 <mat-label> <i class="fa fa-envelope"></i> Email id </mat-label>
                 <input type="text" matInput formControlName='mailId' >
@@ -27,10 +24,10 @@
                 <mat-error *ngIf="formErrors.password">
                     {{formErrors.password}}
                 </mat-error>
-            </mat-form-field>  <br> <br>
-            <mat-checkbox color='primary' formControlName='remember'>Remember me</mat-checkbox>
+            </mat-form-field>  <br>
+            <!-- <mat-checkbox color='primary' formControlName='remember'>Remember me</mat-checkbox> -->
             <br>
-            <button [disabled] ='loginForm.invalid' mat-raised-button class="full-width"> <i class="fa fa-sign-in"></i> Login</button>
+            <button [disabled] ='loginForm.invalid' mat-raised-button class="full-width"> <i class="fa fa-sign-in"></i> Login </button>
             <!-- <hr> -->
             <br> <br>
             <div class="forgot">
@@ -39,6 +36,11 @@
                 <p>Need an account? <a routerLink = '/sign-up'>Join now</a></p>
             </div>
         </form>
+        <div *ngIf = "hidden" class="spinner">
+            <h2>Logging in</h2>
+            <h3>Please wait..</h3>
+            <mat-spinner></mat-spinner>
+        </div>
     </div>
         
 </div>
