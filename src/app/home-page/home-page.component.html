@@ -40,7 +40,7 @@
         <button mat-menu-item routerLink="/home/add-product" (click)="sidenav.toggle()" > <i class="fa fa-cube"></i> Add Product</button>
         <button mat-menu-item routerLink="/home/manage-products" (click)="sidenav.toggle()"> <i class="fa fa-wrench"></i> Manage products</button>
       </mat-menu>
-      <button mat-button routerLink =  "../login"><i class="fa fa-sign-out"></i> Log out</button>
+      <button (click)="logout()" mat-button ><i class="fa fa-sign-out"></i> Log out</button>
     </mat-list>
     <mat-list *ngIf="scrWidth > 768">
       <button mat-button routerLink="/home/dashboard" routerLinkActive>
@@ -58,7 +58,7 @@
         <button mat-menu-item routerLink="/home/add-product" > <i class="fa fa-cube"></i> Add Product</button>
         <button mat-menu-item routerLink="/home/manage-products"> <i class="fa fa-wrench"></i> Manage products</button>
       </mat-menu>
-      <button mat-button routerLink = "../login"><i class="fa fa-sign-out"></i> Log out</button>
+      <button (click) = "logout()" mat-button><i class="fa fa-sign-out"></i> Log out</button>
 
     </mat-list>
   </mat-sidenav>

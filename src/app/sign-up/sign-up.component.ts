@@ -122,7 +122,8 @@ export class SignUpComponent implements OnInit {
       verticalPosition: 'top',
       horizontalPosition: 'center'
     })
-    location.href = 'https://pavan-code.github.io/Inventory-management/login';
+    // location.href = 'https://pavan-code.github.io/Inventory-management/login';
+    location.href = '/login'
   })
   .catch((error) => {
     this.hidden = false;

@@ -104,7 +104,8 @@ export class LoginPageComponent implements OnInit {
         verticalPosition: 'top',
         horizontalPosition: 'center'
       })      
-      location.href = 'https://pavan-code.github.io/Inventory-management/home';
+      // location.href = 'https://pavan-code.github.io/Inventory-management/home';
+      location.href = '/home'
       
     })
     .catch( (error) => {

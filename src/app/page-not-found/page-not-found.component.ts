@@ -8,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class PageNotFoundComponent implements OnInit {
 
   constructor() { }
-
+  i:number = 1;
+  duration: number = 5;
   ngOnInit(): void {
-  }
+    setInterval(() => {
+      this.decrement();
+    }, 1000);
 
+  }
+  decrement(){
+    
+    if(this.duration > 0) 
+      this.duration -= 1;
+    else
+    window.location.href = 'https://pavan-code.github.io/Inventory-management/home';
+  } 
+ 
 }

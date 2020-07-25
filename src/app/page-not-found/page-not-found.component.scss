@@ -1,0 +1,16 @@
+.content {
+    position: relative;
+    top: 100px;
+    justify-self: center;
+    text-align: center;
+    // border: 1px solid black;
+}
+
+h1 {
+    font-size: 100px;
+    font-weight: bolder;
+    color: white;
+    
+    text-shadow: 1px -1px gray, -1px 1px gray,
+                    -1px -1px gray, 1px 1px gray;
+}

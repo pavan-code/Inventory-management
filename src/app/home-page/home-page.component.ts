@@ -36,4 +36,11 @@ export class HomePageComponent implements OnInit {
   constructor() {
     this.getScreenSize();
   }
+
+  logout() {
+
+    document.cookie = "token" + "=" + "";
+    location.href = '/login';    
+    
+  }
 }
