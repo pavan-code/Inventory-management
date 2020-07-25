@@ -40,15 +40,26 @@ div.image {
     // height: 100%; 
     margin-right: 20px;
     position: relative;
-    top: 50px;
+    // top: 50px;
     height: 220px;
     background-image: url(../../assets/images/login.png);
     background-repeat: no-repeat;
     // opacity: 0.8;
     // margin:auto 20px auto auto;
 }
-.spinner {
+div.spinner {
     position: relative;
-    top: 20%;
-    left: 35%;
+    text-align: center;
+    height: 280px;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #234195;
+    stroke-width: 5%;
+}
+
+.spin {
+    position: absolute;
+    left: 38%;    
+    stroke-width: 5%;
 }

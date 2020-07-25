@@ -36,10 +36,12 @@
                 <p>Need an account? <a routerLink = '/sign-up'>Join now</a></p>
             </div>
         </form>
-        <div *ngIf = "hidden" class="spinner">
-            <h2>Logging in</h2>
-            <h3>Please wait..</h3>
-            <mat-spinner></mat-spinner>
+        <div fxFlex *ngIf = "hidden" class="spinner">
+            <div>
+                <h2>Logging in</h2>
+                <h3>Please wait..</h3>
+                <mat-spinner strokeWidth='5' [diameter]='80' title="Loading..please wait..." class="spin"></mat-spinner>                  
+            </div>
         </div>
     </div>
         

@@ -94,6 +94,7 @@ export class LoginPageComponent implements OnInit {
       var expires =  "expires=" + date.toUTCString();
   
       document.cookie = "token" + "=" + token + ";" + expires + ";path=/";
+      
 
       console.log(response.data.message)
       this.loginForm.reset();
@@ -103,12 +104,11 @@ export class LoginPageComponent implements OnInit {
         verticalPosition: 'top',
         horizontalPosition: 'center'
       })      
-      location.href = '/home';
+      location.href = 'https://pavan-code.github.io/Inventory-management/home';
       
     })
     .catch( (error) => {
-      this.hidden = false;
-      
+      this.hidden = false;      
       
       console.log(error.response.data.message);
       

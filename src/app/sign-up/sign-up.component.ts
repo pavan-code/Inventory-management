@@ -15,6 +15,7 @@ export class SignUpComponent implements OnInit {
   
   
   constructor(private fb: FormBuilder, private snackbar: MatSnackBar) { }
+  hidden: boolean = false;
   signUpForm : FormGroup;
   formErrors = {
     'firstName' : '',
@@ -93,7 +94,7 @@ export class SignUpComponent implements OnInit {
     }
   }
   signup() {
-       
+    this.hidden = true;
    axios({
       headers : {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -112,17 +113,20 @@ export class SignUpComponent implements OnInit {
        }
   })
   .then( (response) => {
+    this.hidden = false;
     console.log(response.data.message)
-
+    this.signUpForm.reset();
    
     this.snackbar.open("Sign up successful", '', {
       duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: 'center'
     })
+    location.href = 'https://pavan-code.github.io/Inventory-management/login';
   })
   .catch((error) => {
-    
+    this.hidden = false;
+    // this.signUpForm.reset();
     this.snackbar.open(error.response.data.message, 'close', {
       duration: 5000,
       verticalPosition: 'top',

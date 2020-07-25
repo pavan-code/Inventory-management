@@ -34,6 +34,7 @@ import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-passw
 import { HomePageComponent } from './home-page/home-page.component';
 import { DisplayModule } from './display/display-page.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // import { GetBrandsService } from './services/get-brands.service';
 
@@ -45,6 +46,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ForgotPasswordPageComponent,
     HomePageComponent,
     SignUpComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     FlexLayoutModule,

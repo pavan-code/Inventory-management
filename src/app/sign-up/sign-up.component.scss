@@ -1,4 +1,6 @@
-
+html {
+    height: 150%;
+}
 div.container {
     position: relative;
     box-shadow: 
@@ -7,7 +9,7 @@ div.container {
     border: 1px solid rgb(218, 218, 218);                
     top: 100px;
     padding: 20px;
-    min-width: 350px;
+    min-width: 340px;
     border-radius: 5px;
     height: auto;
     // background-color: green;
@@ -24,3 +26,19 @@ div.image {
     color: white;
     background-color: #34c7ff;
 }
+div.spinner {
+    position: relative;
+    text-align: center;
+    height: 280px;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #234195;
+    stroke-width: 5%;
+}
+
+.spin {
+    position: absolute;
+    left: 42%;    
+    stroke-width: 5%;
+}   
