@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+// import { Getall  } from '.././display/category/api-calls/GetAllCategories';
 
 @Component({
   selector: 'app-home-page',
@@ -36,11 +37,15 @@ export class HomePageComponent implements OnInit {
   constructor() {
     this.getScreenSize();
   }
+ 
 
   logout() {
 
-    document.cookie = "token" + "=" + "";
-    location.href = '/login';    
+    // document.cookie = "token" + "=" + "";
+    localStorage.removeItem("userid");
+    localStorage.removeItem("token");
+    // location.href = '/login';  
+    location.assign("https://pavan-code.github.io/Inventory-management/login")  
     
   }
 }

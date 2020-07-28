@@ -5,12 +5,24 @@
     text-align: center;
     // border: 1px solid black;
 }
-
+.header {
+    text-align: center;
+    // border: 1px solid black;
+    margin: auto;
+    width: 300px;
+}
+img {
+    position: relative;
+    width: 100px;
+    left: -30px;
+//    background-color: white;
+}
 h1 {
-    font-size: 100px;
-    font-weight: bolder;
-    color: white;
-    
+    font-size: 90px;
+    // letter-spacing: 10px;
+    font-weight: bold;
+    color: rgb(175, 119, 119);
+    font-family: monospace;
     text-shadow: 1px -1px gray, -1px 1px gray,
                     -1px -1px gray, 1px 1px gray;
 }

@@ -1,9 +1,13 @@
 <h2 mat-dialog-title>Add Category</h2>
 <hr />
+<div *ngIf ="hide">
+  <p>Adding category.. Please wait</p>
+</div>
 
 <mat-dialog-content>
+  
   <!-- {{ changeCategory.value | json }} -->
-  <form novalidate (ngSubmit)="saveChanges()" [formGroup]="changeCategory">
+  <form *ngIf = "!hide" novalidate (ngSubmit)="saveChanges()" [formGroup]="changeCategory">
     <mat-form-field appearance = "outline" class="full-width">
       <mat-label>Category name</mat-label>
       <input type="text" matInput formControlName = "categoryName">
@@ -22,3 +26,4 @@
     </button>
   </form>
 </mat-dialog-content>
+

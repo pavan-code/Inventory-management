@@ -21,9 +21,10 @@ const EXAMPLE_DATA: BrandsTableItem[] = [
   {id: 5, name: 'Lifebuoy'},
 
 ];
-
+// console.log("in brands tabel data source");
 export class BrandsTableDataSource extends DataSource<BrandsTableItem> {
   data: BrandsTableItem[] = EXAMPLE_DATA;
+  
   paginator: MatPaginator;
   sort: MatSort;
   // brands: import("j:/Inventory-management/src/app/services/get-brands.service").brand[];

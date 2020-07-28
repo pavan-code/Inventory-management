@@ -1,10 +1,14 @@
 <div class="content">
-    <h1>404</h1> <br>
+    <div class="header">
+        <h1>4 <img src="../../assets/images/glass.jpg" alt="">4</h1> <br>
+    </div>
+    
+    
     <div>
         <h2>Sorry,</h2>
         <h3>the page you requested was <b>not found</b></h3>        
-        <h3>Redirecting to the home page in {{duration}} seconds.. </h3>
-        <div><mat-spinner stroke='5%' [diameter]='10'></mat-spinner></div>
+        <h3>Redirecting to the <a routerLink = '/home'>Home page</a> in <b> {{duration}}</b> seconds... </h3>
+        <div><mat-spinner strokeWidth='5' [diameter]='10'></mat-spinner></div>
     </div>
     <!-- <div>
         <p>Something's wrong here</p>

@@ -1,40 +1,73 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { CategoryTableDataSource, CategoryTableItem } from './category-table-datasource';
+import { MatTableDataSource } from '@angular/material/table';
+// import { CategoryTableDataSource, CategoryTableItem } from './category-table-datasource';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ChangeCategoryDialogComponent } from '../../change-category-dialog/change-category-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import axios  from 'axios';
+// import { Getall } from '../api-calls/GetAllCategories';
+export interface Category {
+  id: number;
+  name: string;
+}
+// const data: Category[] = Getall();
 @Component({
   selector: 'app-category-table',
   templateUrl: './category-table.component.html',
   styleUrls: ['./category-table.component.scss']
 })
-export class CategoryTableComponent implements AfterViewInit, OnInit {
+export class CategoryTableComponent implements OnInit {
+   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<CategoryTableItem>;
-  dataSource: CategoryTableDataSource;
-
-  updatedCategory : any;
-
+  categories: Category[];
   constructor(private _dialog: MatDialog, private snackbar: MatSnackBar) {}
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'actions'];
+  
+  displayedColumns: string[] = ['id', 'name', 'actions'];
+  dataSource = new MatTableDataSource<Category>();
 
-  ngOnInit() {
-    this.dataSource = new CategoryTableDataSource();
+  ngOnInit() {    
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;  
+    var userid = localStorage.getItem('userid');
+    var token = localStorage.getItem("token");
+
+    axios({
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'get',
+      url: `https://inventory-shop-api.herokuapp.com/category/${userid}`,
+    })
+      .then((response) => {
+        this.categories = response.data.message;
+        this.dataSource = new MatTableDataSource<Category>(this.categories);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;               
+        
+      })   
+      .catch((error) => {
+        // console.log(error.response.data.message)
+        this.snackbar.open(error.response.data.message, '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        })
+        
+        
+      });
+       
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  editCategory(event: any) {
+  editCategory(categoryName: string, categoryId: number) {
     
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -42,22 +75,47 @@ export class CategoryTableComponent implements AfterViewInit, OnInit {
       top: '60px'
     }
     dialogConfig.data = {
-      categoryName: event,
-      type: 'edit'
+      categoryName: categoryName,
+      categoryId : categoryId,
+      type: 'edit',
+
     }
 
     let dialogRef = this._dialog.open(ChangeCategoryDialogComponent, dialogConfig);
-    dialogRef.afterClosed()
-    .subscribe(result => {
-      this.updatedCategory = result;
-    })
   }
 
-  deleteCategory(categoryName: string) {
-    this.snackbar.open("Category deleted successfully", '', {
-      duration: 2000,
-      panelClass: ['custom-style'],      
-      horizontalPosition: 'center'
+  deleteCategory(categoryId: string) {
+    
+    var userid = localStorage.getItem('userid');
+    var token = localStorage.getItem("token");
+    axios({
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'delete',
+      url: `https://inventory-shop-api.herokuapp.com/category/${userid}/${categoryId}`,
+    })   
+    .then(response => {
+      // this.dataSource.data = response.data.message;
+      this.snackbar.open(response.data.message, '', {
+        duration: 2000,
+        panelClass: ['custom-style'],      
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      })
+      this.ngOnInit();
+      // location.reload();
     })
+    .catch(error => {
+      // console.log(error.response.data.message);  
+      this.snackbar.open(error.response.data.message, '', {
+        duration: 2000,
+        panelClass: ['custom-style'],      
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+        
+      })  
+    }) 
   }
 }

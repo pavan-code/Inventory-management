@@ -92,6 +92,8 @@ export class AddProductComponent implements OnInit {
       verticalPosition: 'bottom',
       horizontalPosition: 'center',
     })
+    console.log(this.product);
+    
     this.productForm.reset();
   }
 }

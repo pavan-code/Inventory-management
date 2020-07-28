@@ -11,8 +11,10 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   ngOnInit(): void {
     // console.log(document.cookie.substring(6));
+    // console.log(localStorage.getItem("token"));
     
-    this.isLoggedIn = document.cookie.length == 6;
+    this.isLoggedIn = localStorage.getItem("token") == null;
+    // console.log(this.isLoggedIn);
     
     // console.log(this.isLoggedIn);
   }

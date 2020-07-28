@@ -42,6 +42,10 @@
       </mat-menu>
       <button (click)="logout()" mat-button ><i class="fa fa-sign-out"></i> Log out</button>
     </mat-list>
+
+    <!-- ======================================================= -->
+
+
     <mat-list *ngIf="scrWidth > 768">
       <button mat-button routerLink="/home/dashboard" routerLinkActive>
         <i class="fa fa-dashboard"></i> Dashboard
@@ -62,6 +66,8 @@
 
     </mat-list>
   </mat-sidenav>
+
+
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

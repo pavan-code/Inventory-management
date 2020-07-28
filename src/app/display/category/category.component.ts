@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
-import { ChangeCategoryDialogComponent } from '../change-category-dialog/change-category-dialog.component';
+import {  MatSnackBar } from '@angular/material/snack-bar';
 
+import { ChangeCategoryDialogComponent } from '../change-category-dialog/change-category-dialog.component';
+import axios from 'axios'
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -9,10 +11,14 @@ import { ChangeCategoryDialogComponent } from '../change-category-dialog/change-
 })
 export class CategoryComponent {
   result: any;
+  loginForm: any;
+  
 
-  constructor(private _dialog: MatDialog) { }
+  constructor(private _dialog: MatDialog, private snackbar: MatSnackBar) { }
 
   addCategory() {
+    var userid = localStorage.getItem('userid');
+    var token = localStorage.getItem("token");
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.position = {
@@ -21,11 +27,9 @@ export class CategoryComponent {
     dialogConfig.data = {
       type: 'add'
     }
-
-    let dialogRef = this._dialog.open(ChangeCategoryDialogComponent, dialogConfig)
-    dialogRef.afterClosed()
-    .subscribe(result => {
-      this.result = result;
-    })
+    if(userid != null && token != null) 
+    {
+      let dialogRef = this._dialog.open(ChangeCategoryDialogComponent, dialogConfig)
+    }
   }
 }
