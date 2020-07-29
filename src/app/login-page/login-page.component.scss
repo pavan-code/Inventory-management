@@ -63,3 +63,15 @@ div.spinner {
     left: 38%;    
     stroke-width: 5%;
 }
+::ng-deep .green-bar {
+    position: absolute;
+    top: 54px;
+    right: -20px;
+    background-color: green;
+}
+
+::ng-deep .red-bar {
+    position: relative;
+    top: 54px;
+    background-color: red;
+}

@@ -29,11 +29,10 @@ export class CategoryTableComponent implements OnInit {
   dataSource = new MatTableDataSource<Category>();
 
   ngOnInit() {    
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;  
+
     var userid = localStorage.getItem('userid');
     var token = localStorage.getItem("token");
-
+    
     axios({
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -43,14 +42,17 @@ export class CategoryTableComponent implements OnInit {
       url: `https://inventory-shop-api.herokuapp.com/category/${userid}`,
     })
       .then((response) => {
+        
         this.categories = response.data.message;
         this.dataSource = new MatTableDataSource<Category>(this.categories);
+        // console.log(this.dataSource);
+        
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;               
         
       })   
       .catch((error) => {
-        // console.log(error.response.data.message)
+        console.log(error.response.data.message)
         this.snackbar.open(error.response.data.message, '', {
           duration: 5000,
           verticalPosition: 'top',
@@ -100,7 +102,7 @@ export class CategoryTableComponent implements OnInit {
       // this.dataSource.data = response.data.message;
       this.snackbar.open(response.data.message, '', {
         duration: 2000,
-        panelClass: ['custom-style'],      
+        panelClass: ['green-bar'],      
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
       })
@@ -111,7 +113,7 @@ export class CategoryTableComponent implements OnInit {
       // console.log(error.response.data.message);  
       this.snackbar.open(error.response.data.message, '', {
         duration: 2000,
-        panelClass: ['custom-style'],      
+        panelClass: ['red-bar'],      
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
         

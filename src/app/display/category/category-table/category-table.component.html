@@ -1,12 +1,12 @@
-<!-- {{updatedCategory | json}} -->
-<!-- <mat-spinner></mat-spinner> -->
-<div class="mat-elevation-z8">
+
+<div *ngIf = "dataSource.data" class="mat-elevation-z8">
   <mat-form-field>
     <mat-label>Search . . .</mat-label>
     <input matInput (keyup)="applyFilter($event)"  #input>
   </mat-form-field>
-
-  <table *ngIf="dataSource" mat-table class="full-width-table" [dataSource] = "dataSource" matSort aria-label="Elements">
+  
+  <table mat-table class="full-width-table" [dataSource] = "dataSource" matSort aria-label="Elements">
+    
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>S.no</th>
@@ -33,9 +33,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- <ng-container *ngIf = "dataSource.data.length == 0">
-      <td class="mat-cell">No records found</td>
-    </ng-container> -->
   </table>
   <mat-paginator #paginator
   
@@ -45,6 +42,9 @@
   [pageSizeOptions]="[1,5,10,15,20]">
   
   </mat-paginator>
-  
+</div>
 
+<div *ngIf = "dataSource.data.length<=0" class="spinner">
+  <!-- <mat-spinner strokeWidth='5' diameter='100'></mat-spinner> -->
+  <h2> <mat-spinner strokeWidth='5' diameter='50'></mat-spinner>Loading... Please wait</h2>
 </div>

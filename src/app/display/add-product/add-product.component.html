@@ -3,7 +3,7 @@
         <span style="font-size: 20px;">Manage <sub style="font-size: 12px;">Products</sub></span>
     </div>
     <hr style="margin: 10px 0;">
-    {{product | json}}
+    <!-- {{product | json}} -->
     <div class="container" style="background-color:whitesmoke;">
         <h2>Add Product</h2>
         <form novalidate (ngSubmit)="saveProduct()" [formGroup]="productForm">
@@ -34,50 +34,25 @@
                 <mat-error *ngIf = "formErrors.description">
                     {{formErrors.description}}
                 </mat-error>
-            </mat-form-field> <br>
+            </mat-form-field> <br>            
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Category</mat-label>
-                <input type="text" matInput formControlName = "category">
+                <!-- <input type="text" matInput formControlName = "category"> -->
+                <mat-select formControlName = "category">
+                    <mat-option value = "{{cat}}" *ngFor = "let cat of categories">
+                        {{cat}}
+                    </mat-option>
+                </mat-select>
                 <mat-error *ngIf = "formErrors.category">
                     {{formErrors.category}}
                 </mat-error>
-            </mat-form-field> <br>
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Brand</mat-label>
-                <input type="text" matInput formControlName = "brand">
-                <mat-error *ngIf = "formErrors.brand">
-                    {{formErrors.brand}}
-                </mat-error>
-            </mat-form-field> <br>
+            </mat-form-field> <br>            
             <mat-form-field appearance="outline">
                 <mat-label>Expiry date</mat-label>
                 <input type="date" matInput formControlName = "expiryDate">
             </mat-form-field> <br>
-            <!-- <div class="form-group">
-                <label for="name">Product name</label>
-                <input formControlName="productName" type="text" placeholder="Enter product name" class="form-control" required>               
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input formControlName="price" type="text" placeholder="Enter price" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="Quantity">Quantity</label>
-                <input formControlName="quantity" type="number" placeholder="Enter quantity" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea formControlName="description" name="description" id="description" cols="30" rows="5" placeholder="Add product description.." class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input formControlName="category" type="text" class="form-control" placeholder="Select category">
-            </div>
-            <div class="form-group">
-                <label for="brand">Brand</label>
-                <input formControlName="brand" type="text" class="form-control" placeholder="Select brand">
-            </div> <br> -->
-            <button class="btn btn-success" (click)="saveProduct()" [disabled]="productForm.invalid"> <i class="fa fa-save"></i> Save product</button>
+            
+            <button class="btn btn-success" (click)="saveProduct()"> <i class="fa fa-save"></i> Save product</button>
         </form>
     </div>
 </div>

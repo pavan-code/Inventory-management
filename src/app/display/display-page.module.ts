@@ -23,6 +23,8 @@ import { ChangeProductDialogComponent } from './change-product-dialog/change-pro
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { MatInputModule } from '@angular/material/input';
     AddProductComponent, 
     ManageProductsComponent, ProductsTableComponent, ChangeProductDialogComponent
   ],
-  entryComponents: [ChangeBrandDialogComponent],
+  // entryComponents: [ChangeBrandDialogComponent],
   imports: [
     CommonModule,
     DisplayRoutingModule,
@@ -51,7 +53,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ]
 })
 

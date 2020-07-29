@@ -21,8 +21,8 @@ export class PageNotFoundComponent implements OnInit {
     if(this.duration > 0) 
       this.duration -= 1;
     else
-    // window.location.href = 'https://pavan-code.github.io/Inventory-management/home';
-    location.href = '/home';
+    window.location.href = 'https://pavan-code.github.io/Inventory-management/home';
+    // location.href = '/home';
   }
  
 }

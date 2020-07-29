@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatSnackBar } from '@angular/material/snack-bar'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,17 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private snackbar: MatSnackBar) { }
+
   isLoggedIn: boolean;
-  ngOnInit(): void {
-    // console.log(document.cookie.substring(6));
-    // console.log(localStorage.getItem("token"));
-    
-    this.isLoggedIn = localStorage.getItem("token") == null;
-    // console.log(this.isLoggedIn);
-    
-    // console.log(this.isLoggedIn);
+  disable: boolean = false;
+
+  ngOnInit(): void {   
+    this.isLoggedIn = localStorage.getItem("token") != null;
+    this.check();
   }
-  
+
+  check() {
+    if(!this.isLoggedIn) {
+      this.disable = true;
+    }
+  }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar'
-
+import  axios from 'axios'
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -11,17 +11,39 @@ export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   product: any;
   constructor(private fb: FormBuilder, private snackbar: MatSnackBar) { }
-
+  categories : string[] = [];
   ngOnInit(): void {
     this.createForm();
+    var userid = localStorage.getItem('userid');
+    var token = localStorage.getItem("token");
+
+    axios({
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'get',
+      url: `https://inventory-shop-api.herokuapp.com/category/${userid}`,
+    })
+      .then((response) => {         
+        response.data.message.filter(cat => {
+          this.categories.push(cat.name)
+        })                                              
+      })   
+      .catch((error) => {        
+        this.snackbar.open(error.response.data.message, '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        })                
+      });
   }
   formErrors =  {
     "productName" : '',
     "price" : '',
     "quantity": '',
     "description" : '',
-    "category" : '',
-    "brand" : '',
+    "category" : '',    
     "expiryDate" : ''
   }
   validationMsgs = {
@@ -41,9 +63,6 @@ export class AddProductComponent implements OnInit {
     "category" : {
       "required" : "Please select one category"
     },
-    "brand" : {
-      "required" : "Please select one brand"
-    },
     "expiryDate" : {
       "required" : "Expiry date required"
     }
@@ -54,8 +73,7 @@ export class AddProductComponent implements OnInit {
       price: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
+      category: ['', [Validators.required]],      
       expiryDate: ['', [Validators.required]]
     })
     this.productForm.valueChanges
@@ -94,6 +112,6 @@ export class AddProductComponent implements OnInit {
     })
     console.log(this.product);
     
-    this.productForm.reset();
+    this.createForm();
   }
 }

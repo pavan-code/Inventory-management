@@ -2,8 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+// import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import axios from 'axios';
+import { getCategories } from '../../services/get-categories';
+
+
+
 @Component({
   selector: 'app-change-category-dialog',
   templateUrl: './change-category-dialog.component.html',
@@ -13,11 +17,14 @@ export class ChangeCategoryDialogComponent implements OnInit {
   changeCategory: FormGroup;
   category : any;
   hide: boolean = false;
+  
+
   constructor(private _fb: FormBuilder,
               private dialogRef: MatDialogRef<ChangeCategoryDialogComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               private snackbar: MatSnackBar
     ) {  this.category = data }
+
     formErrors = {
       "categoryName" : ''
     }
@@ -70,6 +77,14 @@ export class ChangeCategoryDialogComponent implements OnInit {
 
     var userid = localStorage.getItem("userid")
     var token = localStorage.getItem("token")
+    // let cat: string[] = getCategories();
+    // console.log(cat);
+    let cate = new getCategories();
+    const categories: string[] = cate.cat()
+    let len = cate.len();
+    console.log(len);
+   
+    
     
     if(this.category.type == 'add') {
       
@@ -77,6 +92,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
       axios({
         headers: {
           'Content-type' : 'application/json; charset=UTF-8',
+
           Authorization : `Bearer ${token}`
         },
         method: 'post',
@@ -89,7 +105,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         this.dialogRef.close();
         this.snackbar.open(response.data.message, "", {
           duration: 5000,
-          panelClass: ["custom-style"],
+          panelClass: ["green-bar"],
           horizontalPosition: 'center',
           verticalPosition: 'bottom',          
         })
@@ -102,7 +118,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         this.dialogRef.close();
         this.snackbar.open(error.response.data.message, "", {
           duration: 5000,
-          panelClass: ["custom-style"],
+          panelClass: ["red-bar"],
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
           
@@ -128,7 +144,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         this.dialogRef.close();
         this.snackbar.open(response.data.message, "", {
           duration: 5000,
-          panelClass: ["custom-style"],
+          panelClass: ["green-bar"],
           horizontalPosition: 'center',
           verticalPosition: 'bottom',          
         })
@@ -141,7 +157,7 @@ export class ChangeCategoryDialogComponent implements OnInit {
         this.dialogRef.close();
         this.snackbar.open(error.response.data.message, "", {
           duration: 5000,
-          panelClass: ["custom-style"],
+          panelClass: ["red-bar"],
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
           

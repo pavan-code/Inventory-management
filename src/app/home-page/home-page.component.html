@@ -1,8 +1,6 @@
 <mat-toolbar>
-  <!-- <button mat-button color='primary' (click)="toggle()">open</button> -->
-  <mat-icon mat-button *ngIf="!hide" (click)="sidenav.toggle()"
-    >menu</mat-icon
-  >
+  
+  <mat-icon mat-button *ngIf="!hide" (click)="sidenav.toggle()">menu</mat-icon>
   <h2 style="width: 15%;">Admin</h2>
   <!-- <h1>Dashboard</h1> -->
 </mat-toolbar>
@@ -11,30 +9,15 @@
   <mat-sidenav #sidenav [(opened)]="opened" [(mode)]="sidebar">
     <mat-list *ngIf="scrWidth <= 768">
       
-      <button
-        mat-button
-        routerLink="/home/dashboard"
-        (click)="sidenav.toggle()"
-        routerLinkActive
-      >
+      <button mat-button routerLink="/home/dashboard" (click)="sidenav.toggle()" routerLinkActive>
         <i class="fa fa-dashboard"></i> Dashboard
       </button>
-      <button
-        mat-button
-        routerLink="/home/category"
-        (click)="sidenav.toggle()"
-        routerLinkActive
-      >
+      <button mat-button routerLink="/home/category" (click)="sidenav.toggle()" routerLinkActive>
         <i class="fa fa-files-o"></i> Category
       </button>
-      <button
-        mat-button
-        routerLink="/home/brands"
-        (click)="sidenav.toggle()"
-        routerLinkActive
-      >
+      <!-- <button mat-button routerLink="/home/brands" (click)="sidenav.toggle()" routerLinkActive>
         <i class="fa fa-tags"></i> Brands
-      </button>
+      </button> -->
       <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-cubes"></i> Products</button>
       <mat-menu style="background-color: #001f1b;" #menu="matMenu">
         <button mat-menu-item routerLink="/home/add-product" (click)="sidenav.toggle()" > <i class="fa fa-cube"></i> Add Product</button>
@@ -53,9 +36,9 @@
       <button mat-button routerLink="/home/category" routerLinkActive>
         <i class="fa fa-files-o"></i> Category
       </button>
-      <button mat-button routerLink="/home/brands" routerLinkActive>
+      <!-- <button mat-button routerLink="/home/brands" routerLinkActive>
         <i class="fa fa-tags"></i> Brands
-      </button>
+      </button> -->
 
       <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-cubes"></i> Products</button>
       <mat-menu #menu="matMenu">

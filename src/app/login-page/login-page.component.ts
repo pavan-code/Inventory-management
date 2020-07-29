@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import axios from 'axios';
+import { LoginService } from '.././services/login.service';
 
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import pdfMake from 'pdfmake/build/pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
 @Component({
@@ -16,7 +17,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class LoginPageComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
-              private snackbar: MatSnackBar) { this.createForm(); }
+              private snackbar: MatSnackBar,
+              private loginService: LoginService) { this.createForm(); }
 
   loginForm: FormGroup;
   hidden: boolean = false;
@@ -70,7 +72,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
   submit() {
-    
+
     this.hidden = true;
     axios({
       headers: {
@@ -86,20 +88,23 @@ export class LoginPageComponent implements OnInit {
     .then( (response) => {
       this.hidden = false;
       var token = response.data.message.salt
-localStorage.setItem("token",token)
+      localStorage.setItem("token",token)
       
       localStorage.setItem("userid",response.data.message.id)
 
       console.log(response.data.message)
       this.loginForm.reset();
 
-      this.snackbar.open("Login Successful", '', {
+      this.snackbar.open("Login successful", '', {
         duration: 2000,
         verticalPosition: 'top',
-        horizontalPosition: 'center'
+        horizontalPosition: 'center',
+        panelClass: ['green-bar']
       })      
-      location.href = 'https://pavan-code.github.io/Inventory-management/home';
-      // location.href = '/home'
+      setTimeout(() => {        
+        location.href = 'https://pavan-code.github.io/Inventory-management/home';
+        // location.href = '/home'
+      }, 2000);
       
     })
     .catch( (error) => {
@@ -107,10 +112,11 @@ localStorage.setItem("token",token)
       
       console.log(error.response.data.message);
       
-      this.snackbar.open(error.response.data.message, 'close', {
+      this.snackbar.open(error.response.data.message, '', {
         duration: 5000,
         verticalPosition: 'top',
-        horizontalPosition: 'center'
+        horizontalPosition: 'center',
+        panelClass: ['red-bar']
       })
       this.loginForm.reset();
     })
