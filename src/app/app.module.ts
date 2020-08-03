@@ -18,7 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -36,6 +36,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DisplayModule } from './display/display-page.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { OrderComponent } from './order/order.component';
+import { AddOrderComponent } from './add-order/add-order.component';
+import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
+import { OrdersTableComponent } from './add-order/orders-table/orders-table.component';
+import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
 
 
 @NgModule({
@@ -47,6 +52,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomePageComponent,
     SignUpComponent,
     PageNotFoundComponent,
+    OrderComponent,
+    AddOrderComponent,
+    ManageOrdersComponent,
+    OrdersTableComponent,
+    AddProductDialogComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -65,7 +75,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSidenavModule,
     MatListModule,
     DisplayModule,
-    CdkTableModule,
+    MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,

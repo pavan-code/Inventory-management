@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import axios from 'axios';
 
 @Component({
   selector: 'app-change-product-dialog',
@@ -21,17 +22,41 @@ export class ChangeProductDialogComponent implements OnInit {
   ) {
     this.product = Data.data;
   }
+  categories : string[] = [];
 
   ngOnInit(): void {
-    this.createForm();  
+    this.createForm(); 
+    var userid = localStorage.getItem('userid');
+    var token = localStorage.getItem("token");
+
+    axios({
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'get',
+      url: `https://inventory-shop-api.herokuapp.com/category/${userid}`,
+    })
+      .then((response) => {         
+        response.data.message.filter(cat => {
+          this.categories.push(cat.name)
+        })                                              
+      })   
+      .catch((error) => {        
+        this.snackbar.open(error.response.data.message, '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        })                
+      }); 
+
   }
   formErrors =  {
     "productName" : '',
     "price" : '',
     "quantity": '',
     "description" : '',
-    "category" : '',
-    "brand" : ''
+    "category" : ''    
   }
   validationMsgs = {
     "productName" : {
@@ -49,9 +74,6 @@ export class ChangeProductDialogComponent implements OnInit {
     },
     "category" : {
       "required" : "Please select one category"
-    },
-    "brand" : {
-      "required" : "Please select one brand"
     }
   }
   createForm() {
@@ -61,7 +83,7 @@ export class ChangeProductDialogComponent implements OnInit {
       quantity: [this.product.quantity, [Validators.required]],
       description: [this.product.description, [Validators.required]],
       category: [this.product.category, [Validators.required]],
-      brand: [this.product.brand, [Validators.required]],
+      
     });
     this.updateProduct.valueChanges
     .subscribe(data => this.onValueChanged(data));

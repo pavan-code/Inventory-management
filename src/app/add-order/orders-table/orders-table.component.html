@@ -1,0 +1,71 @@
+
+<div *ngIf = "dataSource.data" class="mat-elevation-z8">
+    <mat-form-field>
+      <mat-label>Search . . .</mat-label>
+      <input matInput (keyup)="applyFilter($event)"  #input>      
+    </mat-form-field>
+    <button mat-raised-button color='primary' (click)="addProduct()">add</button>
+    
+    <table mat-table [dataSource] = "dataSource" matSort aria-label="Elements">
+      
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>S.no</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Product name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+        <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+        <td mat-cell *matCellDef="let row">{{row.rate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+        <td mat-cell *matCellDef="let row">{{row.amount}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon style="color: rgb(0, 25, 4);" (click)="editProduct(row.name, row.id, row.quantity)">edit</mat-icon> |
+          <mat-icon style="color: rgb(246, 34, 34);" (click)="deleteProduct(row.id)">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No products found</td>
+      </tr>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No categories found</td>
+      </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+    <mat-paginator #paginator
+    
+    [length]="dataSource?.data.length"
+    [pageIndex]="0"
+    [pageSize]="100"
+    [pageSizeOptions]="[1,5,10,15,20]">
+    
+    </mat-paginator>
+  </div>
+  
+  <!-- <div *ngIf = "dataSource.data.length<=0" class="spinner">
+    
+    <h2> <mat-spinner strokeWidth='5' diameter='50'></mat-spinner>Loading... Please wait</h2>
+  </div> -->
+  

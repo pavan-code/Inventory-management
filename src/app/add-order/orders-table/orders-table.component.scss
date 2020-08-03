@@ -1,0 +1,49 @@
+.mat-table {
+    width: 100%;
+  }
+  .mat-header-cell {
+    font-size: 0.8rem;
+    color: white;
+    background-color: #001f1b;
+    }
+    .mat-row:nth-child(odd) {
+    background-color: white;
+    }
+    .mat-row:nth-child(even) {
+    background-color: #D3D3D3;
+    }
+    .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+      color: #001f1b;
+  }
+  ::ng-deep .green-bar{
+    position: absolute;
+    top: 26px;
+    right: -20px;
+    background-color: green;
+    color:white;
+  }
+  ::ng-deep .red-bar {
+    position: absolute;
+    top: 48px;
+    right: -20px;
+    background-color: rgb(246, 34, 34);
+    color:white;
+  }
+  .mat-icon {
+    cursor: pointer;
+  }
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+    padding-right: 0;
+  }
+  .mat-form-field {
+    display: inline-block;
+    padding: 0 20px;
+  }
+  .spinner {
+    text-align: center;
+  }
+  .mat-spinner {
+    position: relative;
+    top: 30%;
+    left: 45%;
+  }

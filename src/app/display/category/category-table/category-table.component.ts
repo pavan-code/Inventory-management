@@ -57,9 +57,7 @@ export class CategoryTableComponent implements OnInit {
           duration: 5000,
           verticalPosition: 'top',
           horizontalPosition: 'center'
-        })
-        
-        
+        })                
       });
        
   }

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Choose Product</h2>
+<hr>
+
+<mat-dialog-content>
+    
+    <form novalidate [formGroup] = "addProduct">
+        <mat-form-field appearance='outline' class="full-width">
+            <mat-label>Product name</mat-label>
+            <mat-select formControlName = "name">
+                <mat-option value="{{pro}}" *ngFor = "let pro of products">
+                    {{pro}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf = "formErrors.name">
+                {{formErrors.name}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance='outline' class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput formControlName = "quantity">
+            <mat-error *ngIf = "formErrors.quantity">
+                {{formErrors.quantity}}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <span class="flex"></span>
+    <button mat-button mat-dialog-close color='warn'>close</button>
+    <button class="btn btn-success" [disabled] = "addProduct.invalid" (click) = "saveChanges()">Save changes</button>
+</mat-dialog-actions>
