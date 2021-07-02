@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+
 @Component({
   selector: 'app-add-order',
   templateUrl: './add-order.component.html',
@@ -61,7 +67,24 @@ export class AddOrderComponent implements OnInit {
     'phone' : {
       'required' : "Please provide your contact number",
       'pattern' : "Mobile number must be 10 digit",    
-    },
+    }
   }
 
+  generatePdf(){
+    const documentDefinition = { 
+      content: [
+        {
+          text: new Date(),
+          styles: 'date'
+        }
+      ],
+      styles : {
+        date : {
+          fontsize : 19,
+          alignment: 'right'
+        }
+      }
+    };
+    pdfMake.createPdf(documentDefinition).print({}, window);
+   }
 }

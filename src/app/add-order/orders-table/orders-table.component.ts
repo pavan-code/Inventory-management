@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table'
 // import axios from 'axios';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddProductDialogComponent } from 'src/app/add-product-dialog/add-product-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 export interface products {
   id: number;
   name: string;
@@ -49,6 +50,12 @@ export class OrdersTableComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  getTotal() {
+    if(this.Products.length)
+      return this.Products.map(pro => pro.amount).reduce((cost, value) => cost+value, 0)
+    else
+      return 0;
   }
 
   addProduct() {
@@ -105,5 +112,7 @@ export class OrdersTableComponent implements OnInit {
     this.Products.splice(index,1)
     this.ngOnInit();    
   }
+
+  
 
 }

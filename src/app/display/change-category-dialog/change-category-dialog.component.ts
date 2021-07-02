@@ -109,8 +109,8 @@ export class ChangeCategoryDialogComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'bottom',          
         })
-        // location.assign("/home/category")
-        location.assign("https://pavan-code.github.io/Inventory-management/home/category");
+        location.assign("/home/category")
+        // location.assign("https://pavan-code.github.io/Inventory-management/home/category");
        
       })
       .catch(error => {
@@ -148,8 +148,8 @@ export class ChangeCategoryDialogComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'bottom',          
         })
-        // location.assign("/home/category")
-        location.assign("https://pavan-code.github.io/Inventory-management/home/category");
+        location.assign("/home/category")
+        // location.assign("https://pavan-code.github.io/Inventory-management/home/category");
        
       })
       .catch(error => {

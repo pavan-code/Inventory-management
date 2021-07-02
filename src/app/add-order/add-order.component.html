@@ -11,7 +11,7 @@
 
             <div class="form-group" fxLayout = 'row' fxLayout.xs='column'>
                 <label for="name" fxFlex='25%'><b>Customer Name</b></label>
-                <div fxLayout='column' fxFlex='50%'>
+                <div fxLayout='column' fxFlex='30%'>
                     <input type="text" class="form-control" formControlName = "customerName" required>                    
                     <mat-error fxFlex *ngIf = "formErrors.customerName">
                         <small>{{formErrors.customerName}}</small>
@@ -21,7 +21,7 @@
 
             <div class="form-group" fxLayout='row' fxLayout.xs='column'>
                 <label for="address" fxFlex='25%'><b>Customer Address </b></label>
-                <div fxLayout='column' fxFlex='50%'>
+                <div fxLayout='column' fxFlex='30%'>
                     <input type="text" class="form-control" formControlName = "address">
                     <mat-error fxFlex *ngIf = "formErrors.address">
                         <small>{{formErrors.address}}</small>
@@ -31,7 +31,7 @@
 
             <div class="form-group" fxLayout='row' fxLayout.xs='column'>
                 <label for="address" fxFlex='25%'><b>Mobile number</b></label>
-                <div fxLayout='column' fxFlex='50%'>
+                <div fxLayout='column' fxFlex='30%'>
                     <input type="number" class="form-control" formControlName = "phone">
                     <mat-error fxFlex *ngIf = "formErrors.phone">
                         <small>{{formErrors.phone}}</small>
@@ -40,8 +40,10 @@
             </div>
         </form>
     </div>
+    <br>
     <app-orders-table></app-orders-table>
     <br>
     <hr>
-    <button class="btn btn-success">Place order</button>
+    <button mat-button (click) = "generatePdf()">Print</button>
+    <button class="btn btn-success" [disabled] = "orderForm.invalid">Place order</button>
 </div>

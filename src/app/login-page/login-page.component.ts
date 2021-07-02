@@ -102,8 +102,8 @@ export class LoginPageComponent implements OnInit {
         panelClass: ['green-bar']
       })      
       setTimeout(() => {        
-        location.href = 'https://pavan-code.github.io/Inventory-management/home';
-        // location.href = '/home'
+        // location.href = 'https://pavan-code.github.io/Inventory-management/home';
+        location.href = '/home'
       }, 2000);
       
     })

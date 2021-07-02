@@ -10,7 +10,7 @@ export class HomePageComponent implements OnInit {
   // constructor() {}
 
   ngOnInit(): void {}
-  scrHeight: any;
+  
   scrWidth: any;
   sidebar: string;
   opened: boolean = true;
@@ -44,8 +44,8 @@ export class HomePageComponent implements OnInit {
     // document.cookie = "token" + "=" + "";
     localStorage.removeItem("userid");
     localStorage.removeItem("token");
-    // location.href = '/login';  
-    location.assign("https://pavan-code.github.io/Inventory-management/login")  
+    location.href = '/login';  
+    // location.assign("https://pavan-code.github.io/Inventory-management/login")  
     
   }
 }

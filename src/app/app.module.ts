@@ -41,6 +41,7 @@ import { AddOrderComponent } from './add-order/add-order.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { OrdersTableComponent } from './add-order/orders-table/orders-table.component';
 import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
+import { ManageOrdersTableComponent } from './manage-orders/manage-orders-table/manage-orders-table.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { AddProductDialogComponent } from './add-product-dialog/add-product-dial
     ManageOrdersComponent,
     OrdersTableComponent,
     AddProductDialogComponent,
+    ManageOrdersTableComponent,
   ],
   imports: [
     FlexLayoutModule,
